@@ -1,4 +1,3 @@
-# Backend-Test-Sepulveda
 # Cornershop's Backend Test 
 
 This technical test requires the design and implementation (using Django) of a basic management system to coordinate the meal delivery for Cornershop employees.
