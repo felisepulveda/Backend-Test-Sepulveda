@@ -123,3 +123,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# SLACK API Configurations
+# ----------------------------------------------
+# use your keys
+SLACK_CLIENT_ID = '1135404625217.1148156261488'
+SLACK_CLIENT_SECRET = '0ff7afd872440d5e5f2f93435bc14713'
+SLACK_VERIFICATION_TOKEN = '8qaDfPeXTRFrPnSqfBRxM3O3'
+SLACK_BOT_USER_TOKEN = 'xoxb-1135404625217-1137028203233-HWDUkAlskDF12WvXqIwF7zPo'
