@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gestionAlmuerzos',
+    'slack_app',
 ]
 
 MIDDLEWARE = [
@@ -124,11 +125,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'slack_app.auth_backends.SlackAuthenticationBackend',
+]
 
 # SLACK API Configurations
 # ----------------------------------------------
 # use your keys
-SLACK_CLIENT_ID = '1135404625217.1148156261488'
-SLACK_CLIENT_SECRET = '0ff7afd872440d5e5f2f93435bc14713'
-SLACK_VERIFICATION_TOKEN = '8qaDfPeXTRFrPnSqfBRxM3O3'
-SLACK_BOT_USER_TOKEN = 'xoxb-1135404625217-1137028203233-HWDUkAlskDF12WvXqIwF7zPo'
+
+SLACK_CLIENT_ID="1135404625217.1148156261488"
+SLACK_CLIENT_SECRET="0ff7afd872440d5e5f2f93435bc14713"
+SLACK_SIGNING_SECRET="b6f51f03ba44f35fa8a57c97d8244bf6"
+
+SLACK_LOGIN_OAUTH_REDIRECT_URL=""
+SLACK_INSTALL_OAUTH_REDIRECT_URL=""
+
+
+
