@@ -1,0 +1,28 @@
+<html>
+
+<head>
+
+<title>Gestion de pedidos</title>
+
+</head>
+
+<body>
+
+ {% if slack_response %}   
+
+ <p>Encontraste: <strong>{{slack_response}} </strong> </p>
+
+{% else %}
+
+<form action="/menu/" method="POST" > {% csrf_token %}
+    
+    <input type="submit" value="Consulta slack">
+</form>
+
+
+{% endif %} 
+
+</body>
+
+
+</html>

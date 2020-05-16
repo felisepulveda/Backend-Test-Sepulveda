@@ -1,0 +1,21 @@
+<html>
+
+<head>
+
+<title>Gestion de pedidos</title>
+
+</head>
+
+<body>
+
+<form action="/resultado/" method="POST" > {% csrf_token %}
+    <p>Plato Principal: <input type="text" name="plato_fuerte"></p>
+    <p>Ensalada: <input type="text" name="ensalada"></p>
+    <p>Postre: <input type="text" name="postre"></p>
+    <input type="submit" value="Agregar Menu">
+</form>
+
+</body>
+
+
+</html>

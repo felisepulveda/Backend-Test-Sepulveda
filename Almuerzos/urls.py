@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from gestionAlmuerzos import views
+from gestionAlmuerzos.views import Events 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('slack/', include('slack_app.urls')),
+    
+    path('gestion_nora/', views.gestion_nora),
+    path('resultado/', views.resultado),
+    path('menu/', views.consulta),
+    path('events/', Events.as_view()),
 ]
