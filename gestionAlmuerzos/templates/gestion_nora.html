@@ -8,12 +8,33 @@
 
 <body>
 
-<form action="/resultado/" method="POST" > {% csrf_token %}
+    {% if mensaje %}
+
+    <p>Encontraste: <strong>{{mensaje}} </strong> </p>
+
+    {% else %}
+
+<form action="/gestion_nora/" method="POST" > {% csrf_token %}
     <p>Plato Principal: <input type="text" name="plato_fuerte"></p>
     <p>Ensalada: <input type="text" name="ensalada"></p>
     <p>Postre: <input type="text" name="postre"></p>
     <input type="submit" value="Agregar Menu">
 </form>
+
+{% endif %} 
+
+{% if slack_response %}   
+
+ <p>Encontraste: <strong>{{slack_response}} </strong> </p>
+
+{% else %}
+
+<form action="/gestion_nora/" method="POST" > {% csrf_token %}
+    
+    <input type="submit" value="Enviar slack reminder">
+</form>
+
+{% endif %} 
 
 </body>
 

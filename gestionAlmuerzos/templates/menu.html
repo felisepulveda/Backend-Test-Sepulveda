@@ -8,17 +8,18 @@
 
 <body>
 
- {% if slack_response %}   
+ {% if mensaje %}   
 
- <p>Encontraste: <strong>{{slack_response}} </strong> </p>
+ <form action="/menu/" method="POST" > {% csrf_token %}
+    
+    <input type="submit" value="Seleccionar Almuerzo">
+</form>
+
+<p><strong>{{mensaje}} </strong> </p>
 
 {% else %}
 
-<form action="/menu/" method="POST" > {% csrf_token %}
-    
-    <input type="submit" value="Consulta slack">
-</form>
-
+<p><strong>{{mensaje}} </strong> </p>
 
 {% endif %} 
 
