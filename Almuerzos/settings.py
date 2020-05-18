@@ -25,7 +25,7 @@ SECRET_KEY = '*e(gotyew#ib&1zz9(phwr0*1n8h_o$)u3o%(2)+jd(46a6fyn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8c920265.ngrok.io','127.0.0.1','fd41f2bc.ngrok.io','1cfbdd1c.ngrok.io']
+ALLOWED_HOSTS = ['127.0.0.1','nora.cornershop.io','4362ec6a.ngrok.io']
 
 
 # Application definition
@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 
@@ -133,6 +133,12 @@ SLACK_CLIENT_SECRET='0ff7afd872440d5e5f2f93435bc14713'
 SLACK_VERIFICATION_TOKEN = '8qaDfPeXTRFrPnSqfBRxM3O3'
 SLACK_BOT_USER_TOKEN = 'xoxb-1135404625217-1137028203233-HWDUkAlskDF12WvXqIwF7zPo'
 SLACK_USER_TOKEN='xoxp-1135404625217-1146618983024-1134690469476-fee830b1f5966e2c73cd411406abbae3'
+#MENU_URL = 'https://nora.cornershop.io/menu/{}'
+MENU_URL = 'https://4362ec6a.ngrok.io/menu/'
+
+#https://nora.cornershop.io/menu/(?P<uuid>[0-9a-f-]+)$
+
+
 
 
 

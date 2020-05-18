@@ -15,15 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls import url
 from gestionAlmuerzos import views
-from gestionAlmuerzos.views import Events
+from gestionAlmuerzos.views import Events, resultado
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('gestion_nora/', views.gestion_nora),
     #path('resultado/', views.resultado),
-    #path('menu/', views.consulta),
+    #url(r'^menu/(?P<uuid>[0-9a-f-]+)$', views.consulta),
+    #url(r'^menu/(?P<uuid>[0-9a-f-]+)$', resultado.as_view()),
     path('menu/', views.resultado),
     path('events/', Events.as_view()),
 ]

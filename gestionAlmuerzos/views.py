@@ -2,20 +2,25 @@ import time
 import json
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import CreateView, ListView
 from gestionAlmuerzos.models import Menu
+from gestionAlmuerzos.helpers import generar_uuid
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view
 from slack import WebClient
 from slack.errors import SlackApiError
 from django.conf import settings
 
 SLACK_USER_TOKEN = getattr(settings, 'SLACK_USER_TOKEN', None)
 SLACK_VERIFICATION_TOKEN = getattr(settings, 'SLACK_VERIFICATION_TOKEN', None)
-SLACK_BOT_USER_TOKEN = getattr(settings,'SLACK_BOT_USER_TOKEN', None)              
+SLACK_BOT_USER_TOKEN = getattr(settings,'SLACK_BOT_USER_TOKEN', None)   
+MENU_URL = getattr(settings,'MENU_URL', None)            
 bot_token = WebClient(SLACK_BOT_USER_TOKEN) # bot token
 user_token = WebClient(SLACK_USER_TOKEN) # user token
+
 
 # Create your views here.
 
@@ -37,7 +42,7 @@ def gestion_nora(request):
                         #bot_token.chat_postMessage(channel="C0136160H0X",text="Hello from your app! :tada:")
                         #bot_token.chat_postMessage(channel=i,text="Hello from your app! :tada:")
                         #bot_token.chat_scheduleMessage(channel=i,text="Hola, te recuerdo que debes terminar esto",post_at=time.time()+20)
-                        #user_token.reminders_add(text="http://127.0.0.1:8000/menu/",user=i,time=1)
+                        #user_token.reminders_add(text=MENU_URL,user=i,time=1)
                         attach_json = [
                             {
                                 "fallback": "Upgrade your Slack client to use messages like these.",
@@ -48,8 +53,7 @@ def gestion_nora(request):
                                     {
                                         "type": "button",
                                         "text": ":red_circle:   Usuario: ",
-                                        "url": "http://127.0.0.1:8000/menu/"
-                                        
+                                        "url": MENU_URL.format(generar_uuid())
                                     }
                                 ]
                             }
@@ -69,15 +73,25 @@ def gestion_nora(request):
     else:
         return render(request,"gestion_nora.html")
 
-
+@api_view(["POST,GET"])
 def resultado(request):
-    print (request.GET)
+    #print (json.loads(request.body.decode("utf-8")))
+    print (request)
     if request.method=='POST':
-        mensaje="Menu ingresado"
+            mensaje="Menu ingresado"
 
     else:
-        mensaje="No has ingresado nada"
+            mensaje="No has ingresado nada"
     return render(request,"menu.html",{"mensaje":mensaje})
+
+
+"""class resultado(APIView):
+    def post(self, request, *args, **kwargs):
+        slack_message = request.data
+        print (slack_message)
+        mensaje="fsfs"
+        #return render(self.request,"menu.html",{"mensaje":mensaje})
+        return Response(status=status.HTTP_200_OK)"""
 
 
 def consulta(request):
