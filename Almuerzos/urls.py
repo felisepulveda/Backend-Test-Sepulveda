@@ -17,15 +17,20 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
 from gestionAlmuerzos import views
-from gestionAlmuerzos.views import Events, resultado
+from gestionAlmuerzos.views import Events
+from django.contrib.auth import views as v
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('gestion_nora/', views.gestion_nora),
+    #path('ingreso/', views.ingreso),
     #path('resultado/', views.resultado),
-    #url(r'^menu/(?P<uuid>[0-9a-f-]+)$', views.consulta),
+    url(r'^menu/(?P<uuid>[0-9a-f-]+)$', views.resultado),
     #url(r'^menu/(?P<uuid>[0-9a-f-]+)$', resultado.as_view()),
-    path('menu/', views.resultado),
+    #path('menu/', views.resultado),
     path('events/', Events.as_view()),
+    path('', v.LoginView.as_view(template_name='ingreso.html'),name='login'),
+    #path('logout/', v.logout_then_login.as_view(template_name=''),name='logout'),
+    
 ]

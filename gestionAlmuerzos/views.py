@@ -4,12 +4,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import CreateView, ListView
 from gestionAlmuerzos.models import Menu
+from gestionAlmuerzos.tasks import sendReminder
+
 from gestionAlmuerzos.helpers import generar_uuid
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.decorators import api_view
 from slack import WebClient
 from slack.errors import SlackApiError
 from django.conf import settings
@@ -21,8 +22,25 @@ MENU_URL = getattr(settings,'MENU_URL', None)
 bot_token = WebClient(SLACK_BOT_USER_TOKEN) # bot token
 user_token = WebClient(SLACK_USER_TOKEN) # user token
 
-
 # Create your views here.
+
+"""def ingreso(request):
+    if request.method=='POST':
+        miForm=FormularioIngreso(request.POST)
+        if miForm.is_valid():
+            infForm=miForm.cleaned_data
+            checkear=Nora.objects.filter(nombre=infForm['nombre'],password=infForm['password'])
+            if checkear:
+                #print (checkear[0])
+                return render(request,"gestion_nora.html")
+                #return HttpResponse("gestion_nora.html")
+            else:
+                return render(request,"ingreso.html",{"form":miForm,"men":"Usted no es norita, intente nuevamente"})
+        else:
+            return render(request,"ingreso.html")
+    else:
+        miForm=FormularioIngreso()
+    return render(request,"ingreso.html",{"form":miForm})"""
 
 
 def gestion_nora(request):
@@ -33,37 +51,10 @@ def gestion_nora(request):
             return render(request,"gestion_nora.html",{"mensaje":mensaje})
         else:
             try:
-                response = bot_token.users_list()
-                users = response["members"]
-                user_ids = list(map(lambda u: u["id"], users))
-                #print (user_ids)
-                for i in user_ids:
-                    if i not in ['USLACKBOT','U01410U5Z6V']:
-                        #bot_token.chat_postMessage(channel="C0136160H0X",text="Hello from your app! :tada:")
-                        #bot_token.chat_postMessage(channel=i,text="Hello from your app! :tada:")
-                        #bot_token.chat_scheduleMessage(channel=i,text="Hola, te recuerdo que debes terminar esto",post_at=time.time()+20)
-                        #user_token.reminders_add(text=MENU_URL,user=i,time=1)
-                        attach_json = [
-                            {
-                                "fallback": "Upgrade your Slack client to use messages like these.",
-                                "color": "#CC0000",
-                                "attachment_type": "default",
-                                "callback_id": "menu",
-                                "actions": [
-                                    {
-                                        "type": "button",
-                                        "text": ":red_circle:   Usuario: ",
-                                        "url": MENU_URL.format(generar_uuid())
-                                    }
-                                ]
-                            }
-                        ]
-                        bot_token.chat_postMessage(channel='gestion-de-almuerzos',text="Let's get started!",
-                        attachments=attach_json)
-                        slack_response="mensaje posteado"
-                        return render(request,"gestion_nora.html",{"slack_response":slack_response})
-                    else:
-                        continue
+                sendReminder.delay()
+                slack_response="mensaje posteado"
+                return render(request,"gestion_nora.html",{"slack_response":slack_response})
+                    
 
             except SlackApiError as e:
                 # You will get a SlackApiError if "ok" is False
@@ -72,26 +63,19 @@ def gestion_nora(request):
 
     else:
         return render(request,"gestion_nora.html")
+    
 
-@api_view(["POST,GET"])
-def resultado(request):
+
+def resultado(request,uuid):
     #print (json.loads(request.body.decode("utf-8")))
-    print (request)
+    print (type(uuid))
+    print (uuid)
     if request.method=='POST':
             mensaje="Menu ingresado"
 
     else:
             mensaje="No has ingresado nada"
     return render(request,"menu.html",{"mensaje":mensaje})
-
-
-"""class resultado(APIView):
-    def post(self, request, *args, **kwargs):
-        slack_message = request.data
-        print (slack_message)
-        mensaje="fsfs"
-        #return render(self.request,"menu.html",{"mensaje":mensaje})
-        return Response(status=status.HTTP_200_OK)"""
 
 
 def consulta(request):
