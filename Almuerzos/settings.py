@@ -26,7 +26,7 @@ SECRET_KEY = '*e(gotyew#ib&1zz9(phwr0*1n8h_o$)u3o%(2)+jd(46a6fyn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','nora.cornershop.io','32f812e9.ngrok.io']
+ALLOWED_HOSTS = ['127.0.0.1','nora.cornershop.io','bba331d3.ngrok.io','localhost']
 
 
 # Application definition
@@ -128,28 +128,36 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# SLACK API Configurations
-# ----------------------------------------------
-# use your keys 
-SLACK_CLIENT_ID='1135404625217.1148156261488'
-SLACK_CLIENT_SECRET='0ff7afd872440d5e5f2f93435bc14713'
-SLACK_VERIFICATION_TOKEN = '8qaDfPeXTRFrPnSqfBRxM3O3'
-SLACK_BOT_USER_TOKEN = 'xoxb-1135404625217-1137028203233-HWDUkAlskDF12WvXqIwF7zPo'
+############################## Variables de Slack ######################################
+SLACK_CLIENT_ID='1135404625217.1148156261488' # Token del usuario Slack
+SLACK_CLIENT_SECRET='0ff7afd872440d5e5f2f93435bc14713' # Id secreto del usuario
+SLACK_VERIFICATION_TOKEN = '8qaDfPeXTRFrPnSqfBRxM3O3' # Token para verificar identidad Slack
+SLACK_BOT_USER_TOKEN = 'xoxb-1135404625217-1137028203233-HWDUkAlskDF12WvXqIwF7zPo' # Token de un bot de Slack 
 SLACK_USER_TOKEN='xoxp-1135404625217-1146618983024-1134690469476-fee830b1f5966e2c73cd411406abbae3'
-#MENU_URL = 'https://nora.cornershop.io/menu/{}'
-MENU_URL = 'https://32f812e9.ngrok.io/menu/{}'
-ID_CHANNEL = 'C0136160H0X'
+ID_CHANNEL = 'C0136160H0X' # Este valor debe cambiarse al Id del canal del usuario que gestione, no importa como se llame el canal
+##########################################################################################
 
+
+
+############################## URL del programa  ######################################
+#MENU_URL = 'https://nora.cornershop.io/menu/{}' # Descomentar esta variable para usar el programa
+MENU_URL = 'https://bba331d3.ngrok.io/menu/{}' # Esta variable se debe comentar para usar el programa
+##########################################################################################
+
+
+
+############################## Autentificacion de Programa ######################################
 LOGIN_REDIRECT_URL = reverse_lazy('gestion_nora')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
- 
+##########################################################################################
 
+
+ 
+############################## Configuracion Celery ######################################
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_BROKER_URL='redis://localhost:6379/0'
-
-#https://nora.cornershop.io/menu/(?P<uuid>[0-9a-f-]+)$
-
+##########################################################################################
 
 
 

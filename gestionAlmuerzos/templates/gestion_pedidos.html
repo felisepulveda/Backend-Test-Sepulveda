@@ -3,7 +3,7 @@
 
     <head>
 
-        <title>Consulta tus Menus</title>
+        <title>Consulta tus Pedidos</title>
         
         </head>
 
@@ -11,9 +11,11 @@
     {% if msj %}
         <p>{{ msj }} </p>
     {% else %}
+    <ul>
         {% for i in data %}
-            <p><strong>{{ i }} </strong> </p><a href="{% url 'elimina_nora' i=i %}">Eliminar</a>
+        <li><p><strong>{{ i }} </strong> </p></li>
         {% endfor %}
+    </ul>
     {% endif %}
 <ul>
     <li><a href="{% url 'gestion_nora' %}">Ingresar Menu</a></li>
