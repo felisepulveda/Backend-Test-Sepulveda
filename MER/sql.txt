@@ -1,68 +1,53 @@
-CREATE TABLE admin (
+CREATE TABLE calendario (
+    "day-month-year"   DATE NOT NULL,
+    descripcion        VARCHAR(20)
+);
+
+ALTER TABLE calendario ADD CONSTRAINT calendario_pk PRIMARY KEY ( "day-month-year" );
+
+CREATE TABLE empleado (
+    uuid     VARCHAR(50) NOT NULL,
     nombre   VARCHAR(20) NOT NULL
 );
 
-ALTER TABLE admin ADD CONSTRAINT admin_pk PRIMARY KEY ( nombre );
-
-CREATE TABLE cal_em (
-    calendario_fecha_id    DATE NOT NULL,
-    empleado_id_empleado   INTEGER NOT NULL,
-    customizacion          VARCHAR(20),
-    menu_id_menu           INTEGER NOT NULL
-);
-
-ALTER TABLE cal_em ADD CONSTRAINT cal_em_pk PRIMARY KEY ( calendario_fecha_id,
-empleado_id_empleado );
-
-CREATE TABLE calendario (
-    fecha_id      DATE NOT NULL,
-    descripcion   VARCHAR(30) NOT NULL
-);
-
-ALTER TABLE calendario ADD CONSTRAINT calendario_pk PRIMARY KEY ( fecha_id );
-
-CREATE TABLE empleado (
-    id_empleado   INTEGER NOT NULL,
-    nombre        VARCHAR(20) NOT NULL,
-    snombre       VARCHAR(20),
-    apellidop     VARCHAR(20) NOT NULL,
-    apellidom     VARCHAR(20) NOT NULL,
-    cargo         VARCHAR(20) NOT NULL
-);
-
-ALTER TABLE empleado ADD CONSTRAINT empleado_pk PRIMARY KEY ( id_empleado );
+ALTER TABLE empleado ADD CONSTRAINT empleado_pk PRIMARY KEY ( uuid );
 
 CREATE TABLE menu (
     id_menu        INTEGER NOT NULL,
     plato_fuerte   VARCHAR(20) NOT NULL,
     ensalada       VARCHAR(20),
-    postre         VARCHAR(20),
-    nora_id_p      INTEGER NOT NULL
+    postre         VARCHAR(20)
 );
 
 ALTER TABLE menu ADD CONSTRAINT menu_pk PRIMARY KEY ( id_menu );
 
 CREATE TABLE nora (
-    id_p          INTEGER NOT NULL,
-    nombre        VARCHAR(20) NOT NULL,
-    apellido      VARCHAR(20) NOT NULL,
-    descripcion   VARCHAR(20)
+    nombre     VARCHAR(20) NOT NULL,
+    password   VARCHAR(50) NOT NULL,
+    email      VARCHAR(30)
 );
 
-ALTER TABLE nora ADD CONSTRAINT proveedor_pk PRIMARY KEY ( id_p );
+ALTER TABLE nora ADD CONSTRAINT nora_pk PRIMARY KEY ( nombre );
 
-ALTER TABLE cal_em
-    ADD CONSTRAINT cal_em_calendario_fk FOREIGN KEY ( calendario_fecha_id )
-        REFERENCES calendario ( fecha_id );
+CREATE TABLE pedido (
+    empleado_uuid                   VARCHAR(50) NOT NULL,
+    "Calendario_day-month-year"     DATE NOT NULL,
+    menu_id_menu                    INTEGER NOT NULL,
+    "day-month-year/hour-min-sec"   DATE NOT NULL,
+    customizacion                   VARCHAR(50)
+);
 
-ALTER TABLE cal_em
-    ADD CONSTRAINT cal_em_empleado_fk FOREIGN KEY ( empleado_id_empleado )
-        REFERENCES empleado ( id_empleado );
+ALTER TABLE pedido ADD CONSTRAINT cal_em_pk PRIMARY KEY ( empleado_uuid,
+"Calendario_day-month-year" );
 
-ALTER TABLE cal_em
+ALTER TABLE pedido
+    ADD CONSTRAINT cal_em_empleado_fk FOREIGN KEY ( empleado_uuid )
+        REFERENCES empleado ( uuid );
+
+ALTER TABLE pedido
     ADD CONSTRAINT cal_em_menu_fk FOREIGN KEY ( menu_id_menu )
         REFERENCES menu ( id_menu );
 
-ALTER TABLE menu
-    ADD CONSTRAINT menu_nora_fk FOREIGN KEY ( nora_id_p )
-        REFERENCES nora ( id_p );
+ALTER TABLE pedido
+    ADD CONSTRAINT pedido_calendario_fk FOREIGN KEY ( "Calendario_day-month-year" )
+        REFERENCES calendario ( "day-month-year" );
