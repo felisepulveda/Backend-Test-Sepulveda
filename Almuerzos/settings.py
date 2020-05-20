@@ -26,7 +26,7 @@ SECRET_KEY = '*e(gotyew#ib&1zz9(phwr0*1n8h_o$)u3o%(2)+jd(46a6fyn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','nora.cornershop.io','aac40fa1.ngrok.io']
+ALLOWED_HOSTS = ['127.0.0.1','nora.cornershop.io','32f812e9.ngrok.io']
 
 
 # Application definition
@@ -137,10 +137,11 @@ SLACK_VERIFICATION_TOKEN = '8qaDfPeXTRFrPnSqfBRxM3O3'
 SLACK_BOT_USER_TOKEN = 'xoxb-1135404625217-1137028203233-HWDUkAlskDF12WvXqIwF7zPo'
 SLACK_USER_TOKEN='xoxp-1135404625217-1146618983024-1134690469476-fee830b1f5966e2c73cd411406abbae3'
 #MENU_URL = 'https://nora.cornershop.io/menu/{}'
-MENU_URL = 'https://aac40fa1.ngrok.io/menu/{}'
+MENU_URL = 'https://32f812e9.ngrok.io/menu/{}'
 ID_CHANNEL = 'C0136160H0X'
 
 LOGIN_REDIRECT_URL = reverse_lazy('gestion_nora')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
  
 
 CELERY_RESULT_BACKEND = 'django-db'

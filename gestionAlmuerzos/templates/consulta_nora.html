@@ -1,0 +1,25 @@
+
+<html>
+
+    <head>
+
+        <title>Consulta tus pedidos</title>
+        
+        </head>
+
+<body>
+    {% if msj %}
+        <p>{{ msj }} </p>
+    {% else %}
+        {% for i in data %}
+            <p><strong>{{ i }} </strong> </p><a href="{% url 'elimina_nora' i=i %}">Eliminar</a>
+        {% endfor %}
+    {% endif %}
+<ul>
+    <li><a href="{% url 'gestion_nora' %}">Ingresar Menu</a></li>
+        <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+</ul>
+
+</body>
+
+</html>

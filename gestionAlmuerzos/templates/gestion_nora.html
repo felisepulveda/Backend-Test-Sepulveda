@@ -8,33 +8,21 @@
 
 <body>
 
-    {% if mensaje %}
+    <p>Bienvenida {{user.username | upper}}</p>
 
-    <p>Encontraste: <strong>{{mensaje}} </strong> </p>
+    <form action="/gestion_nora/" method="POST" > {% csrf_token %}
+        <p>Plato Principal: <input type="text" name="plato_fuerte"></p>
+        <p>Ensalada: <input type="text" name="ensalada"></p>
+        <p>Postre: <input type="text" name="postre"></p>
+        <input type="submit" value="Agregar Menu">
+    </form>
 
-    {% else %}
+    <p><strong>{{mensaje}} </strong> </p>
 
-<form action="/gestion_nora/" method="POST" > {% csrf_token %}
-    <p>Plato Principal: <input type="text" name="plato_fuerte"></p>
-    <p>Ensalada: <input type="text" name="ensalada"></p>
-    <p>Postre: <input type="text" name="postre"></p>
-    <input type="submit" value="Agregar Menu">
-</form>
-
-{% endif %} 
-
-{% if slack_response %}   
-
- <p>Encontraste: <strong>{{slack_response}} </strong> </p>
-
-{% else %}
-
-<form action="/gestion_nora/" method="POST" > {% csrf_token %}
-    
-    <input type="submit" value="Enviar slack reminder">
-</form>
-
-{% endif %} 
+    <ul>
+        <li><a href="{% url 'consulta_nora' %}">Consultar Menus Ingresados</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+</ul>
 
 </body>
 

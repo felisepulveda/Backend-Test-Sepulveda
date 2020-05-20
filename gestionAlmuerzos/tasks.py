@@ -2,7 +2,7 @@ from Almuerzos.celery import app
 from gestionAlmuerzos.helpers import generar_uuid
 from django.conf import settings
 from slack import WebClient
-from gestionAlmuerzos.models import Empleado
+from gestionAlmuerzos.models import Menu, Empleado, Pedido, Calendario
 
 SLACK_USER_TOKEN = getattr(settings, 'SLACK_USER_TOKEN', None)
 SLACK_VERIFICATION_TOKEN = getattr(settings, 'SLACK_VERIFICATION_TOKEN', None)
@@ -40,6 +40,13 @@ def sendReminder():
 def addDB(user,uuid,real_name):
     Em=Empleado(uuid=uuid,nombre=real_name)
     Em.save()
+
+
+@app.task
+def drop():
+    Pedido.objects.all().delete()
+    Empleado.objects.all().delete()
+    Menu.objects.all().delete()
 
 
     

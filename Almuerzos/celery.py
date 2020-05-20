@@ -17,3 +17,5 @@ app.conf.update(
     #BROKER_URL = 'django://',
     BROKER_URL = CELERY_BROKER_URL,  
 )
+
+app.conf.timezone = 'America/Santiago'

@@ -19,18 +19,21 @@ from django.conf.urls import url
 from gestionAlmuerzos import views
 from gestionAlmuerzos.views import Events
 from django.contrib.auth import views as v
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
-    path('gestion_nora/', views.gestion_nora),
-    #path('ingreso/', views.ingreso),
+    path('gracias/', views.gracias),
+    path('gestion_nora/',login_required(views.gestion_nora),name='gestion_nora'),
+    path('consulta_nora/',login_required(views.consulta_nora),name='consulta_nora'),
+    url('elimina_nora/(?P<i>[0-9a-zA-Z -]+)$',login_required(views.elimina_nora),name='elimina_nora'),
+    path('', login_required(views.gestion_nora)),
     #path('resultado/', views.resultado),
-    url(r'^menu/(?P<uuid>[0-9a-f-]+)$', views.resultado),
+    url('menu/(?P<uuid>[0-9a-f-]+)$', views.resultado,name='menu'),
     #url(r'^menu/(?P<uuid>[0-9a-f-]+)$', resultado.as_view()),
-    #path('menu/', views.resultado),
+    path('menu/', views.resultado),
     path('events/', Events.as_view()),
-    path('', v.LoginView.as_view(template_name='ingreso.html'),name='login'),
-    #path('logout/', v.logout_then_login.as_view(template_name=''),name='logout'),
+    path('accounts/login/', v.LoginView.as_view(template_name='ingreso.html'),name='login'),
+    path('logout/', v.logout_then_login,name='logout'),
     
 ]

@@ -7,21 +7,28 @@
 </head>
 
 <body>
+{% if nombre %}
 
- {% if mensaje %}   
-
- <form action="/menu/" method="POST" > {% csrf_token %}
-    
-    <input type="submit" value="Seleccionar Almuerzo">
+<p> {{nombre}} </p>
+ <form action="/gracias/" method="POST" > {% csrf_token %}
+    <ul>
+        <li><select id="seleccion" name="seleccion">
+        {% for i in menus %}
+        <option name={{i.item1}} value={{i.item1}}>{{i.item2}}-{{i.item3}}-{{i.item4}}</option>
+        {% endfor %}
+      </select></li>
+      
+        <li><strong>Comentarios</strong>
+            <li><textarea id="customizacion" name="customizacion" rows="4" cols="50"></textarea></li>
+            <input type="hidden" id="custId" name="uuid" value={{uuid}}>
+    <input type="submit" value="Seleccionar Almuerzo"></li>
+    </ul>
 </form>
 
-<p><strong>{{mensaje}} </strong> </p>
-
 {% else %}
+<p><strong>{{ mensaje }} </strong> </p>
+{% endif %}
 
-<p><strong>{{mensaje}} </strong> </p>
-
-{% endif %} 
 
 </body>
 
