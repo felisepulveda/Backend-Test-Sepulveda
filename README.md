@@ -61,12 +61,11 @@ Luego, en el archivo settings.py copiamos la url generada por ngrok 'https://xxx
 Luego, en nuestro ambiente virtual 'Nora' escribimos
 - python manage.py runserver 0.0.0.0:80  (servidor django, '0.0.0.0:80' correra a traves de ngrok)
 
-[pueden solo correr -python manage.py runserver, ya que asumo tienen la URL https://nora.cornershop.io para probar el programa,
-en este caso, deben descomentar 
-- #MENU_URL = 'https://nora.cornershop.io/menu/{}'
-y comentar
-- MENU_URL = 'https://xxxxxxxx.ngrok.io/menu/{}'
-al final del archivo settings.py de nuestro proyecto Almuerzos]
+#### Pueden solo correr 'python manage.py runserver', ya que asumo tienen la URL 'https://nora.cornershop.io' para probar el programa,
+en este caso, al final del archivo settings.py de nuestro proyecto Almuerzos deben
+- #MENU_URL = 'https://nora.cornershop.io/menu/{}'	DESCOMENTAR
+- MENU_URL = 'https://xxxxxxxx.ngrok.io/menu/{}'	COMENTAR
+
 
 Luego descargamos redis para windows, y abrimos redis-server.exe, se nos abrira una terminal, y escribimos
 - redis-server (servidor redis)
