@@ -111,4 +111,5 @@ si es que a Nora se le olvido agregar un menu diario, y borro sus menus registra
 2) Queria hacer mas testing, pero estuve ajustado de tiempo.
 3) Se que deje algunas credenciales privadas de Slack en mi codigo, pero ya tenia mi repo reprobado, y no queria sacar algo y que despues no funcionara.
 4) Si por alguna razon, algo no llegara a funcionar, solo contactarme, porque si funciona, pero siempre puede pasa algo.
-Solo a probar. Saludos, y gracias por la oportunidad.
+5) A Nora le di permisos de super usuaria, asi que tecnicamente, podria ingresar a django/admin. Esto se puede cambiar, disminuyendo los permisos.
+A probar nomas!!!!!. Saludos, y gracias por la oportunidad.
