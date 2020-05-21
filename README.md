@@ -36,16 +36,16 @@ Ahora instalamos paquetes de python con el comando
 Usamos postgresql como nuestro sistema de base de datos, por tanto, debe 
 1) Abrir postgresql, y crear su base de datos con 'el nombre que quiera'
 2) Se debe configurar en el archivo settings.py del proyecto los valores 
-- DATABASES = {    
-    'default': {     
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',    
-        'NAME': 'el nombre que quiera', # Nombre de la base de datos    
-        'USER': 'postgres',	# Aca     
-        'PASSWORD': 'root',     # Aca      
-        'HOST': 'localhost',	# Dependiendo en que servidor se almacena su sistema de gestion de base de datos     
-        'DATABASE': '5432',	# El puerto del servidor    
-    }      
-}      
+- DATABASES = { <br />       
+    'default': { <br />   
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', <br />    
+        'NAME': 'el nombre que quiera', # Nombre de la base de datos <br />   
+        'USER': 'postgres',	# Aca   <br />  
+        'PASSWORD': 'root',     # Aca  <br />    
+        'HOST': 'localhost',	# Dependiendo en que servidor se almacena su sistema de gestion de base de datos     <br />
+        'DATABASE': '5432',	# El puerto del servidor    <br />
+    }   <br />   
+}  <br />    
 
 ## Ejecución Proyecto
 Para ejecutar nuestro proyecto Almuerzos, escribimos los siguientes comandos en nuestro ambiente 'Nora' (al mismo nivel archivo manage.py)
