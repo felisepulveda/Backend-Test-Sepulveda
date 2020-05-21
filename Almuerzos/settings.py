@@ -26,7 +26,7 @@ SECRET_KEY = '*e(gotyew#ib&1zz9(phwr0*1n8h_o$)u3o%(2)+jd(46a6fyn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','nora.cornershop.io','bba331d3.ngrok.io','localhost']
+ALLOWED_HOSTS = ['127.0.0.1','nora.cornershop.io','localhost','f18fd7c5.ngrok.io']
 
 
 # Application definition
@@ -42,7 +42,18 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_celery_beat',
     'django_celery_results',
+    'django_nose',
 ]
+
+# Django-nose Measuring coverage
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-html',
+    '--cover-html-dir=htmlcov',
+]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,6 +93,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'noraalmuerzos',
+        'TEST': {
+            'NAME': 'coverage_test_nora',
+        },
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -141,7 +155,7 @@ ID_CHANNEL = 'C0136160H0X' # Este valor debe cambiarse al Id del canal del usuar
 
 ############################## URL del programa  ######################################
 #MENU_URL = 'https://nora.cornershop.io/menu/{}' # Descomentar esta variable para usar el programa
-MENU_URL = 'https://bba331d3.ngrok.io/menu/{}' # Esta variable se debe comentar para usar el programa
+MENU_URL = 'https://f18fd7c5.ngrok.io/menu/{}' # Esta variable se debe comentar para usar el programa
 ##########################################################################################
 
 

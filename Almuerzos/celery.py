@@ -24,11 +24,11 @@ app.conf.update(
     CELERYBEAT_SCHEDULE={
         'borrar_db': {
             'task': 'gestionAlmuerzos.tasks.drop',
-            'schedule': crontab(minute=15, hour=6, day_of_week='mon,tue,wed,thu,fri,sat,sun')
+            'schedule': crontab(minute=0, hour=22, day_of_week='mon,tue,wed,thu,fri,sat,sun')
         },
         'enviar_reminders': {
             'task': 'gestionAlmuerzos.tasks.sendReminder',
-            'schedule': crontab(minute=15, hour=7, day_of_week='mon,tue,wed,thu,fri,sat,sun')
+            'schedule': crontab(minute=1, hour=22, day_of_week='mon,tue,wed,thu,fri,sat,sun')
         }
     }
 

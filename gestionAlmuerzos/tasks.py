@@ -27,7 +27,7 @@ def sendReminder():
         uuid=generar_uuid()
         response = user_token.users_info(user=i)
         real_name = response['user']['real_name']
-        user_token.reminders_add(text=MENU_URL.format(uuid),user=i,time=1)
+        user_token.reminders_add(text="Agendar tu almuerzo aca: "+MENU_URL.format(uuid),user=i,time=1)
         addDB(i,uuid,real_name)
     return "ready"
 
