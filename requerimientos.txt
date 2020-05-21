@@ -1,0 +1,10 @@
+gevent==20.5.0
+psycopg2==2.8.5
+redis==3.5.2
+Django==3.0.6
+django-slack-app==1.0.40
+django-celery-beat==2.0.0
+django-celery-results==1.2.1
+djangorestframework==3.11.0
+coverage==5.1
+django-nose==1.4.6

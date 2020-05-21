@@ -1,33 +1,36 @@
 # Cornershop's Backend Test 
 
-## Preparación ambiente de trabajo
+## Preparación ambiente de trabajo, todo fue realizado en windows 10
+Paquetes necesarios
 
-- Instala Python 3.6.2
-
-Abrimos una terminal, e instalamos con pip lo siguiente
 - virtualenv 16.1.0
 - virtualenvwrapper-win 1.2.5
+- gevent 20.5.0 
+- psycopg2 2.8.5 
+- redis 3.5.2 
+- Django 3.0.6 
+- django-slack-app 1.0.40 
+- django-celery-beat 2.0.0 
+- django-celery-results 1.2.1 
+- djangorestframework 3.11.0 
+- coverage 5.1 
+- django-nose 1.4.6 
+
+Ahora, instalamos Python 3.6.2, abrimos una terminal, e instalamos los siguientes paquetes
+- pip install virtualenv==16.1.0
+- pip install virtualenvwrapper-win==1.2.5
 
 Luego en la misma terminal, escribimos lo siguiente
-- 'mkvirtualenv Nora'  (Aca creas el ambiente virtual llamado 'Nora', e ingresas a el automáticamente)
+- 'mkvirtualenv Nora'  (Acá creas el ambiente virtual llamado 'Nora', e ingresas a él automáticamente)
 
 Crea una carpeta con el mismo nombre del ambiente, es decir, 'Nora', e ingresa a ella en tu terminal y escribe lo siguiente
 - 'setprojectdir .' (ahora cada vez que ingresemos a nuestro ambiente, nos dirigira a la carpeta 'Nora')
 - 'workon Nora' (para ingresar al ambiente, 'deactivate' es para salir)
 
-Clonamos este repositorio dentro de 'Nora', y nos situamos al mismo nivel del archivo manage.py dentro de nuestra cmd.
+Clonamos mi repositorio dentro de 'Nora', y nos situamos al mismo nivel del archivo manage.py dentro de nuestra cmd.
 
-Ahora instalamos con pip el resto de los paquetes
-- gevent	20.5.0 ---> pip install gevent
-- psycopg2 2.8.5 ---> pip install psycopg2
-- redis 3.5.2 ---> pip install redis
-- Django 3.0.6 ---> pip install django
-- django-slack-app 1.0.40 ---> pip install django-slack-app
-- django-celery-beat 2.0.0 ---> pip install django-celery-beat
-- django-celery-results 1.2.1 ---> pip install django-celery-results
-- djangorestframework 3.11.0 ---> pip install djangorestframework
-- coverage 5.1 ---> pip install coverage
-- django-nose 1.4.6 ---> pip install django-nose
+Ahora instalamos paquetes de python con el comando
+- pip install -r requerimientos.txt 
 
 ## Sistema de gestión de base de datos
 Usamos postgresql como nuestro sistema de base de datos, por tanto, debe 
