@@ -59,17 +59,20 @@ Luego, descargamos e instalamos ngrok, y ejecutamos ngrok.exe, se abrirá una te
 - ngrok http 80 (servidor tunel)
 
 Luego, en el archivo settings.py copiamos la url generada por ngrok 'https://xxxxxxxx.ngrok.io' en
+<pre>
 - ALLOWED_HOSTS =[],
 - MENU_URL = 'https://xxxxxxxx.ngrok.io/menu/{}',
+</pre>
 
 Luego, en nuestro ambiente virtual 'Nora' escribimos
 - python manage.py runserver 0.0.0.0:80  (servidor django, '0.0.0.0:80' correra a traves de ngrok)
 
 #### Pueden solo correr 'python manage.py runserver', ya que asumo tienen la URL 'https://nora.cornershop.io' para probar el programa,
 en este caso, al final del archivo settings.py de nuestro proyecto Almuerzos deben
+<pre>
 - #MENU_URL = 'https://nora.cornershop.io/menu/{}'	DESCOMENTAR
 - MENU_URL = 'https://xxxxxxxx.ngrok.io/menu/{}'	COMENTAR
-
+</pre>
 
 Luego descargamos redis para windows, y abrimos redis-server.exe, se nos abrirá una terminal, y escribimos
 - redis-server (servidor redis)
@@ -90,8 +93,10 @@ Crear una app en slack, y con los siguientes scopes para 'user'
 - users:read
 
 En el archivo Almuerzos/Almuerzos/settings.py copia lo siguiente
+<pre>
 - SLACK_USER_TOKEN = 'xoxp-xxxxxxxxxxxxxx-xxxxxxxxxxxxxx-xxxxxxxxdxxxxxxxxxxxxxxx'
 - ID_CHANNEL = 'CXXXXXXXXXX' (Tu canal puede llamarse como quieras, pero en él deben estar todos los empleados al que quieres entregar almuerzos)
+</pre>
 
 ## Credenciales para Nora
 - Username: nora
