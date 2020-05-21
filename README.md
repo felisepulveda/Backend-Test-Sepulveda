@@ -1,6 +1,6 @@
 # Cornershop's Backend Test 
 
-## Preparacion ambiente de trabajo
+## Preparación ambiente de trabajo
 
 - Instala Python 3.6.2
 
@@ -29,7 +29,7 @@ Ahora instalamos con pip el resto de los paquetes
 - coverage 5.1 ---> pip install coverage
 - django-nose 1.4.6 ---> pip install django-nose
 
-## Sistema de gestion de base de datos
+## Sistema de gestión de base de datos
 Usamos postgresql como nuestro sistema de base de datos, por tanto, debe 
 1) Abrir postgresql, y crear su base de datos con 'el nombre que quiera'
 2) Se debe configurar en el archivo settings.py del proyecto los valores 
@@ -44,14 +44,14 @@ Usamos postgresql como nuestro sistema de base de datos, por tanto, debe
     }
 }
 
-## Ejecucion Proyecto
+## Ejecución Proyecto
 Para ejecutar nuestro proyecto Almuerzos, escribimos los siguientes comandos en nuestro ambiente 'Nora' (al mismo nivel archivo manage.py)
 - python manage.py makemigrations
 - python manage.py migrate
 - python manage.py createsuperuser (Creamos a nora con todos los permisos, aunque se puede cambiar en caso de asi desearlo)
 [username: nora, email: 'xxx@gmail.com', password: nora1234567] 
 
-Luego, descargamos e instalamos ngrok, y ejecutamos ngrok.exe, se abrira una terminal y escribimos 
+Luego, descargamos e instalamos ngrok, y ejecutamos ngrok.exe, se abrirá una terminal y escribimos 
 - ngrok http 80 (servidor tunel)
 
 Luego, en el archivo settings.py copiamos la url generada por ngrok 'https://xxxxxxxx.ngrok.io' en
@@ -67,7 +67,7 @@ en este caso, al final del archivo settings.py de nuestro proyecto Almuerzos deb
 - MENU_URL = 'https://xxxxxxxx.ngrok.io/menu/{}'	COMENTAR
 
 
-Luego descargamos redis para windows, y abrimos redis-server.exe, se nos abrira una terminal, y escribimos
+Luego descargamos redis para windows, y abrimos redis-server.exe, se nos abrirá una terminal, y escribimos
 - redis-server (servidor redis)
 
 Luego abrimos dos terminales mas (en ambiente 'Nora', al nivel de manage.py), y escribimos
@@ -98,18 +98,18 @@ Para generar un reporte, escribir
 
 - python manage.py test   (viene integrado django-nose y coverage)
 
-## Explicacion
+## Explicación
 Nuestro programa borra la base datos diariamiente (tabla empleados y tabla pedidos) a las 6:15 AM, ya que simulamos una base de datos en cache,
 y los uuid son generados on the fly. Los slack reminders se envian a las 7:15 AM. Todo esto se hace gracias a celery y redis de forma asincrona.
 No se pueden hacer pedidos despues de las 11 AM. El comportamiento del borrado de la base de datos se puede impedir simplemente eliminando borrar_db en el 
-CELERYBEAT_SCHEDULE de celery.py. Se usan sistemas de autentificacion, se bloquean URLs intermedias, excepto las relacionadas con la seleccion de almuerzos 
+'CELERYBEAT_SCHEDULE' de celery.py. Se usan sistemas de autentificacion, se bloquean URLs intermedias, excepto las relacionadas con la selección de almuerzos 
 de los empleados. El codigo impide ciertas inconsistencias como ingresar menus con campos en blancos, que el empleado pida mas de un menu al dia, que no pueda pedir menus
 si es que a Nora se le olvido agregar un menu diario, y borro sus menus registrados, etc. 
 
-## Autocritica
+## Autocrítica
 1) Use postgresql, la cual considero debe ser usada para proyectos muy grandes, pense en la escalabilidad de la app, pero al final, es como matar una mosca con una bazuca.
 2) Queria hacer mas testing, pero estuve ajustado de tiempo.
-3) Se que deje algunas credenciales privadas de Slack en mi codigo, pero ya tenia mi repo reprobado, y no queria sacar algo y que despues no funcionara.
-4) Si por alguna razon, algo no llegara a funcionar, solo contactarme, porque si funciona, pero siempre puede pasa algo.
-5) A Nora le di permisos de super usuaria, asi que tecnicamente, podria ingresar a django/admin. Esto se puede cambiar, disminuyendo los permisos.
+3) Se que deje algunas credenciales privadas de Slack en mi código, pero ya tenia mi repo reprobado, y no quería sacar algo y que despues no funcionara.
+4) Si por alguna razón, algo no llegara a funcionar, solo contactarme, porque si funciona, pero siempre puede pasa algo.
+5) A Nora le di permisos de super usuaria, asi que técnicamente, podría ingresar a django/admin. Esto se puede cambiar, disminuyendo los permisos.
 A probar nomas!!!!!. Saludos, y gracias por la oportunidad.
