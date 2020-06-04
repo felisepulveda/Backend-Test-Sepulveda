@@ -1,5 +1,3 @@
-# Cornershop's Backend Test 
-
 ## Preparación ambiente de trabajo, todo fue realizado en windows 10
 Paquetes necesarios
 
