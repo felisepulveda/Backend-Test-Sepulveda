@@ -113,10 +113,3 @@ No se pueden hacer pedidos despues de las 11 AM. El comportamiento del borrado d
 de los empleados. El codigo impide ciertas inconsistencias como ingresar menus con campos en blancos, que el empleado pida mas de un menu al dia, que no pueda pedir menus
 si es que a Nora se le olvido agregar un menu diario, y borro sus menus registrados, etc. 
 
-## Autocrítica
-1) Use postgresql, la cual considero debe ser usada para proyectos muy grandes, pense en la escalabilidad de la app, pero al final, es como matar una mosca con una bazuca.
-2) Queria hacer mas testing, pero estuve ajustado de tiempo.
-3) Se que deje algunas credenciales privadas de Slack en mi código, pero ya tenia mi repo reprobado, y no quería sacar algo y que despues no funcionara.
-4) Si por alguna razón, algo no llegara a funcionar, solo contactarme, porque si funciona, pero siempre puede pasa algo.
-5) A Nora le di permisos de super usuaria, asi que técnicamente, podría ingresar a django/admin. Esto se puede cambiar, disminuyendo los permisos.
-A probar nomas!!!!!. Saludos, y gracias por la oportunidad.
